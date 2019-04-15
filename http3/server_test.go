@@ -81,7 +81,7 @@ var _ = Describe("Server", func() {
 			closed := make(chan struct{})
 			str.EXPECT().Close().Do(func() { close(closed) })
 			rw := newRequestWriter(utils.DefaultLogger)
-			Expect(rw.WriteRequest(str, req)).To(Succeed())
+			Expect(rw.WriteRequest(str, req, false)).To(Succeed())
 			if req.Body != nil {
 				b := make([]byte, 1000)
 				n, err := io.ReadFull(req.Body, b)
